@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPayment.Server", "BlazorPayment\Server\BlazorPayment.Server.csproj", "{30C58997-11C0-4203-A7C0-3A61DBD55569}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPayment.Server", "BlazorPayment\Server\BlazorPayment.Server.csproj", "{30C58997-11C0-4203-A7C0-3A61DBD55569}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPayment.Client", "BlazorPayment\Client\BlazorPayment.Client.csproj", "{494D53DE-F604-4E6D-B094-0ED59ACBAB6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPayment.Client", "BlazorPayment\Client\BlazorPayment.Client.csproj", "{494D53DE-F604-4E6D-B094-0ED59ACBAB6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPayment.Shared", "BlazorPayment\Shared\BlazorPayment.Shared.csproj", "{C0B36D1B-E58D-4748-A8A4-65DAC1AB6E76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPayment.Shared", "BlazorPayment\Shared\BlazorPayment.Shared.csproj", "{C0B36D1B-E58D-4748-A8A4-65DAC1AB6E76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

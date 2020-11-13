@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using BlazorPayment.Server.Data;
 using BlazorPayment.Server.Models;
+using System.Security.Claims;
 
 namespace BlazorPayment.Server
 {
@@ -41,6 +42,8 @@ namespace BlazorPayment.Server
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+            services.Configure<IdentityOptions>(options =>
+                options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 
             services.AddControllersWithViews();
             services.AddRazorPages();
