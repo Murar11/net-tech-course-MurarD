@@ -4,6 +4,7 @@
 @using BlazorPayment.Shared
 @attribute [Authorize]
 @inject HttpClient HttpClient
+@inject NavigationManager navManager
 <style>
     .wallet{
         width:250px;
@@ -32,6 +33,7 @@ else
             </div>
             <div>
                 <button @onclick="() => DeleteWallet(wallet.Id)">Delete Wallet</button>
+                <button @onclick="() => MakeTransfer(wallet.Id)">Make Transfer</button>
             </div>
         </div>
     }
@@ -48,10 +50,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadWallewts();
+        await LoadWallets();
     }
 
-    private async Task  LoadWallewts()
+    private async Task  LoadWallets()
     {
         try
         {
@@ -73,7 +75,7 @@ else
 
             if(response.IsSuccessStatusCode)
             {
-                await LoadWallewts();
+                await LoadWallets();
             }
         }
         catch (AccessTokenNotAvailableException exception)
@@ -88,7 +90,20 @@ else
         try
         {
             await HttpClient.DeleteAsync("api/wallet/" + id);
-            await LoadWallewts();
+            await LoadWallets();
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+    }
+    private async Task MakeTransfer(Guid id)
+    {
+        try
+        {
+
+            navManager.NavigateTo($"transfer/{id}");
+            
         }
         catch (AccessTokenNotAvailableException exception)
         {
