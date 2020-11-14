@@ -13,21 +13,21 @@
 }
 else
 {
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">Wallet @wallet.Id</h5>
-        <p class="card-text">Amount:@wallet.Amount @wallet.Currency</p>
-        <p>
-            Amount:<br />
-            <input @bind="transferData.Amount" />
-        </p>
-        <p>
-            Username: <br />
-            <input @bind="transferData.Username" />
-        </p>
-        <button class="btn btn-primary" @onclick="MakeTransfer"> Transfer</button>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Wallet @wallet.Id</h5>
+            <p class="card-text">Amount:@wallet.Amount @wallet.Currency</p>
+            <p>
+                Amount:<br />
+                <input @bind="transferData.Amount" />
+            </p>
+            <p>
+                Username: <br />
+                <input @bind="transferData.Username" />
+            </p>
+            <button class="btn btn-primary" @onclick="MakeTransfer"> Transfer</button>
+        </div>
     </div>
-</div>
 }
 
 @code {
@@ -58,7 +58,7 @@ else
             transferData.SourceWalletId = SourceWalletId;
             transferData.Currency = wallet.Currency;
             var response = await HttpClient.PostAsJsonAsync($"api/wallet/transfer", transferData);
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 navManager.NavigateTo("wallets");
             }

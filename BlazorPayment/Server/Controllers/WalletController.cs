@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Wallet = BlazorPayment.Server.Models.Wallet;
 
-
 namespace BlazorPayment.Server.Controllers
 {
     [Authorize]
@@ -42,7 +41,7 @@ namespace BlazorPayment.Server.Controllers
         {
             var userId = userManager.GetUserId(User);
             var wallet = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId).
-                           Wallets.FirstOrDefault(x => x.Id == id);
+                Wallets.FirstOrDefault(x => x.Id == id);
             return wallet;
         }
         [HttpPost]
@@ -105,7 +104,7 @@ namespace BlazorPayment.Server.Controllers
 
             var destination = destinationUser.Wallets.FirstOrDefault(x => x.Currency == data.Currency);
 
-            if(destination == null || source.Amount < data.Amount)
+            if (destination == null || source.Amount < data.Amount)
             {
                 return BadRequest();
             }
