@@ -103,8 +103,7 @@ else
         {
 
             navManager.NavigateTo($"transfer/{id}");
-            await LoadWallets();
-
+            
         }
         catch (AccessTokenNotAvailableException exception)
         {

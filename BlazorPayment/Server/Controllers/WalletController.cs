@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Wallet = BlazorPayment.Server.Models.Wallet;
 
+
 namespace BlazorPayment.Server.Controllers
 {
     [Authorize]
@@ -36,12 +37,13 @@ namespace BlazorPayment.Server.Controllers
             return wallets;
         }
         [HttpGet]
-        [Route("id")]
+        [Route("{id}")]
         public Wallet GetWallet(Guid id)
         {
             var userId = userManager.GetUserId(User);
-            var wallets = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId).Wallets.FirstOrDefault(x => x.Id == id);
-            return wallets;
+            var wallet = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId).
+                           Wallets.FirstOrDefault(x => x.Id == id);
+            return wallet;
         }
         [HttpPost]
         public IActionResult CreateWallet([FromQuery] string currency)
