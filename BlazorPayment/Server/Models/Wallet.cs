@@ -11,5 +11,7 @@ namespace BlazorPayment.Server.Models
         public decimal Amount { get; set; }
         public string Currency { get; set; }
 
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
