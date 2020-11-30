@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorPayment.Server.Aplication.Wallets.Commands;
+using BlazorPayment.Server.Aplication.Wallets.Queries;
 using BlazorPayment.Server.Data;
 using BlazorPayment.Server.Helper;
 using BlazorPayment.Server.Models;
 using BlazorPayment.Shared;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -23,18 +26,23 @@ namespace BlazorPayment.Server.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IMediator mediator;
 
-        public WalletController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public WalletController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IMediator mediator)
         {
             this.context = context;
             this.userManager = userManager;
+            this.mediator = mediator;
         }
 
         [HttpGet]
-        public List<Wallet> GetWallets()
+        public async Task<List<Wallet>> GetWallets()
         {
-            var userId = userManager.GetUserId(User);
-            var wallets = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId).Wallets;
+            var query = new GetWalletsQuery
+            {
+                UserId = userManager.GetUserId(User),
+            };    
+           var wallets = await  mediator.Send(query);
             return wallets;
         }
         [HttpGet]
@@ -47,35 +55,20 @@ namespace BlazorPayment.Server.Controllers
             return wallet;
         }
         [HttpPost]
-        public IActionResult CreateWallet([FromQuery] string currency)
+        public async Task<IActionResult> CreateWallet([FromQuery] string currency)
         {
-            if (!CurrencyManager.Currencies.Contains(currency))
+            var createWalletCommand = new CreateWalletCommand
             {
-               return BadRequest();
-            }
+                UserId = userManager.GetUserId(User),
+                Currency = currency
 
-            var userId = userManager.GetUserId(User);
-                        
-            var user = context.Users.Include(x => x.Wallets).FirstOrDefault(x => x.Id == userId);
-
-            if  (user.Wallets.Any(x => x.Currency == currency))
+            };
+            var createWalletResult = await mediator.Send(createWalletCommand);
+           if(!createWalletResult.IsSuccessful)
             {
                 return BadRequest();
             }
-            var wallet = new Wallet
-            {
-                Amount = 0,
-                Currency = currency
-            };
 
-            if (user.Wallets == null)
-            {
-                user.Wallets = new List<Wallet>();
-            }
-
-            user.Wallets.Add(wallet);
-
-            context.SaveChanges();
             return Ok();
         }
 

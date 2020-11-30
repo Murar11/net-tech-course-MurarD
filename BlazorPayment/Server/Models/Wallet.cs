@@ -12,6 +12,6 @@ namespace BlazorPayment.Server.Models
         public string Currency { get; set; }
 
         public string ApplicationUserId { get; set; }
-        public ApplicationUser User { get; set; }
+       
     }
 }

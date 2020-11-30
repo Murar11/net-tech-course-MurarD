@@ -1,10 +1,15 @@
 ﻿@page "/wallets"
+@using Microsoft.AspNetCore.WebUtilities
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using BlazorPayment.Shared
+@using Blazored.Modal
+@using Blazored.Modal.Services
 @attribute [Authorize]
 @inject HttpClient HttpClient
 @inject NavigationManager navManager
+
+@inject IModalService Modal 
 <style>
     .wallet {
         width: 250px;
@@ -40,17 +45,17 @@ else
     @if (AllowedCurrencies.Any())
     {
         <div>
-        <h3>Create a new wallet</h3>
+            <h3>Create a new wallet</h3>
 
-        <select @bind="Currency">
-            @foreach (var currency in AllowedCurrencies)
-            {
-		            <option value="@currency">@currency</option>
-            }
-        </select>
+            <select @bind="Currency">
+                @foreach (var currency in AllowedCurrencies)
+                {
+                    <option value="@currency">@currency</option>
+                }
+            </select>
 
-        <button @onclick="() => CreateWallet()">Create wallet</button>
-    </div>
+            <button @onclick="() => CreateWallet()">Create wallet</button>
+        </div>
     }
     else
     {
@@ -71,6 +76,18 @@ else
         await LoadCurrencies();
         await LoadWallets();
         GetAllowedCurrencies();
+        var uri = navManager.ToAbsoluteUri(navManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue(Constants.transferSuccess, out var successValue))
+        {
+            if (!Convert.ToBoolean(successValue))
+            {
+                Modal.Show<Client.Modals.TransferStatusModal>("Transfer Result");
+            }
+            else
+            {
+                Modal.Show<Client.Modals.Succes>("Succes");
+            }
+        }
     }
 
     private async Task LoadCurrencies()
@@ -104,7 +121,7 @@ else
 
         foreach (var currency in CurrencyList.Currencies)
         {
-            if(!WalletList.Any(x => x.Currency == currency))
+            if (!WalletList.Any(x => x.Currency == currency))
             {
                 AllowedCurrencies.Add(currency);
             }

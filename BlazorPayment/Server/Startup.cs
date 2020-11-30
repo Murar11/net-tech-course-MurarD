@@ -14,6 +14,7 @@ using System.Linq;
 using BlazorPayment.Server.Data;
 using BlazorPayment.Server.Models;
 using System.Security.Claims;
+using MediatR;
 
 namespace BlazorPayment.Server
 {
@@ -45,6 +46,7 @@ namespace BlazorPayment.Server
             services.Configure<IdentityOptions>(options =>
                 options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 
+            services.AddMediatR(typeof(Startup));
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

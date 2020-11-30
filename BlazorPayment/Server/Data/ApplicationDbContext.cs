@@ -19,9 +19,6 @@ namespace BlazorPayment.Server.Data
         }
         public DbSet<Wallet> Wallets { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-        }
+       
     }
 }
