@@ -143,6 +143,7 @@ else
             {
                 await LoadWallets();
                 GetAllowedCurrencies();
+                Modal.Show<Client.Modals.AddWallet>("Wallet Created");
             }
         }
         catch (AccessTokenNotAvailableException exception)
@@ -159,6 +160,7 @@ else
             await HttpClient.DeleteAsync("api/wallet/" + id);
             await LoadWallets();
             GetAllowedCurrencies();
+            Modal.Show<Client.Modals.DeleteWallet>("Delete Wallet");
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -170,7 +172,8 @@ else
         try
         {
 
-             navManager.NavigateTo("transfer/");
+            navManager.NavigateTo("transfer/" );
+            Modal.Show<Client.Modals.ChooseCurrency>("Choose Currency!");
 
         }
         catch (AccessTokenNotAvailableException exception)

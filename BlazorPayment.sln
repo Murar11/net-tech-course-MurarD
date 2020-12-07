@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPayment.Client", "Bla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPayment.Shared", "BlazorPayment\Shared\BlazorPayment.Shared.csproj", "{C0B36D1B-E58D-4748-A8A4-65DAC1AB6E76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPayment.Server.UnitTest", "BlazorPayment.Server.UnitTest\BlazorPayment.Server.UnitTest.csproj", "{9CB92615-47C5-4B3A-BAFC-CCBEF12F2288}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPayment.Server.UnitTest", "BlazorPayment.Server.UnitTest\BlazorPayment.Server.UnitTest.csproj", "{9CB92615-47C5-4B3A-BAFC-CCBEF12F2288}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
