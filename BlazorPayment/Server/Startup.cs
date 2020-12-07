@@ -15,6 +15,8 @@ using BlazorPayment.Server.Data;
 using BlazorPayment.Server.Models;
 using System.Security.Claims;
 using MediatR;
+using BlazorPayment.Server.Middleware;
+using BlazorPayment.Server.Aplication.Promotion;
 
 namespace BlazorPayment.Server
 {
@@ -47,6 +49,8 @@ namespace BlazorPayment.Server
                 options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 
             services.AddMediatR(typeof(Startup));
+            services.AddSingleton<IPromotionManager, PromotionManager>();
+            services.AddTransient<ExceptionHandlingMiddleware>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -76,6 +80,8 @@ namespace BlazorPayment.Server
             app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

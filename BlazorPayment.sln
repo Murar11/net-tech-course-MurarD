@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPayment.Client", "Bla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorPayment.Shared", "BlazorPayment\Shared\BlazorPayment.Shared.csproj", "{C0B36D1B-E58D-4748-A8A4-65DAC1AB6E76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPayment.Server.UnitTest", "BlazorPayment.Server.UnitTest\BlazorPayment.Server.UnitTest.csproj", "{9CB92615-47C5-4B3A-BAFC-CCBEF12F2288}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C0B36D1B-E58D-4748-A8A4-65DAC1AB6E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0B36D1B-E58D-4748-A8A4-65DAC1AB6E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0B36D1B-E58D-4748-A8A4-65DAC1AB6E76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB92615-47C5-4B3A-BAFC-CCBEF12F2288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB92615-47C5-4B3A-BAFC-CCBEF12F2288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB92615-47C5-4B3A-BAFC-CCBEF12F2288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB92615-47C5-4B3A-BAFC-CCBEF12F2288}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,7 +16,8 @@ namespace BlazorPayment.Server
                   "EUR",
                   "USD",
                   "MDL",
-                  "EC"
+                  "EC",
+                  "BTC"
                 };
         }
     }
